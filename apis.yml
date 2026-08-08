@@ -1,8 +1,18 @@
 aid: avenue-one
 name: Avenue One
-description: 'Avenue One is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Avenue One is a New York-based technology service platform and investment marketplace for
+  institutional owners, buyers, sellers, lenders and borrowers of residential rental real estate.
+  Founded in 2020, it connects institutional debt and equity capital to local operating partners
+  and property owners across 21+ U.S. markets, combining proprietary property data, automated
+  valuation, and a vetted partner network to find, finance, buy, renovate, lease, manage and sell
+  single-family rental homes at scale. Its service lines span lending (bridge and SFR portfolio
+  loans), strategy development, acquisitions, renovations, asset management, title and brokerage
+  or dispositions. The company reports $2.2B+ of capital deployed. Its software runs as a private,
+  login-gated product suite ("AvenueOS") for internal, builder, investor and partner users; no
+  public developer program, API reference, or machine-readable contract is published.
 url: https://raw.githubusercontent.com/api-evangelist/avenue-one/refs/heads/main/apis.yml
+image: https://avenueone.com/_assets/Avenue_One_Horizontal_Logo_Digital_FullColor_1-b0ddb1c50f.svg
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
@@ -12,6 +22,14 @@ created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
+- Real Estate
+- Single-Family Rental
+- PropTech
+- Institutional Investing
+- Lending
+- Asset Management
+- Property Data
+- Marketplace
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +37,57 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/avenue-one-domain-security.yml
 - type: Website
+  url: https://avenueone.com/
+- type: Support
+  url: https://avenueone.com/contact-us
+- type: TermsOfService
+  url: https://avenueone.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://avenueone.com/terms
+- type: Login
+  url: https://partners.avenueone.com/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/avenue1/
+- type: Careers
+  url: https://avenueone.com/careers
+- type: SecondaryMarket
   url: https://forgeglobal.com/avenue-one_stock/
+- type: LLMsTxt
+  url: llms/avenue-one-llms.txt
+- type: WellKnownIndex
+  url: well-known/avenue-one-well-known.yml
+- type: IdentityProvider
+  url: authentication/avenue-one-authentication.yml
+x-enrichment-note: >-
+  The well-known/ and authentication/ artifacts are deliberately NOT wired as the
+  canonical WellKnown / Authentication pointers the rating reads. Both document
+  Avenue One's Auth0 human-login tenant, not a developer authentication model or an
+  API discovery surface, and crediting them would award API-quality points to a
+  company that publishes no API. See x-coverage.
+x-enrichment:
+  date: '2026-08-06'
+  status: minimal
+  artifacts_added: 5
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Avenue One ships AvenueOS only as a login-gated product to institutional clients
+    and vetted partners — partners.avenueone.com 302s straight to an Auth0 universal
+    login, and the AvenueOS backend at api.credit.avenueone.com answers every docs
+    path (/docs, /redoc, /openapi.json, /api/openapi.json) identically to a control
+    path, so no OpenAPI, SDK, webhook or developer portal exists to profile.
+  evidence:
+  - url: https://api.credit.avenueone.com/api/openapi.json
+    status: 404
+  - url: https://api.credit.avenueone.com/openapi.json
+    status: 404
+  - url: https://partners.avenueone.com/
+    status: 302
+  - url: https://avenueone.com/.well-known/agent-card.json
+    status: 403
+  checked: '2026-08-06'
