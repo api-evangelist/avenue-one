@@ -1,0 +1,72 @@
+generated: '2026-08-06'
+method: searched
+source: live probes of every Avenue One host discovered during enrichment
+note: >-
+  Avenue One publishes no /.well-known/ documents on its marketing site or on the
+  AvenueOS product hosts. The only /.well-known/ surface that resolves is the
+  company's Auth0 identity tenant (avenueone.us.auth0.com), which fronts the
+  Partner Portal login at partners.avenueone.com and serves standard OIDC/OAuth
+  2.0 discovery metadata anonymously.
+hosts:
+- host: https://avenueone.com
+  note: >-
+    Marketing site. Every unmatched path — including the control path
+    /CONTROL-404-xyz — returns the same 403 "Page Not Found" HTML page, so a 403
+    here means "not published", not "blocked".
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+  - path: /llms.txt
+    status: 403
+  - path: /robots.txt
+    status: 403
+  - path: /sitemap.xml
+    status: 403
+- host: https://api.credit.avenueone.com
+  note: >-
+    AvenueOS API host (FastAPI-shaped; /api/* returns application/json
+    {"detail":"Not Found"}). Interactive docs and the OpenAPI document are
+    disabled — every probe matches the control path.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://avenueone.us.auth0.com
+  note: >-
+    Avenue One's Auth0 identity tenant, reached by following the 302 from
+    partners.avenueone.com. Discovery metadata is served anonymously.
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json; charset=utf-8
+    file: avenue-one-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json; charset=utf-8
+    note: identical payload to /.well-known/openid-configuration
+  - path: /.well-known/jwks.json
+    status: 200
+x-evidence:
+  checked: '2026-08-06'
+  control_path_behavior:
+    avenueone.com: 403 HTML "Page Not Found" for every unmatched path
+    api.credit.avenueone.com: 404 text/plain "Not Found"; 404 JSON under /api/*
