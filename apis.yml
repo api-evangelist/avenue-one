@@ -12,6 +12,17 @@ description: >-
   login-gated product suite ("AvenueOS") for internal, builder, investor and partner users; no
   public developer program, API reference, or machine-readable contract is published.
 url: https://raw.githubusercontent.com/api-evangelist/avenue-one/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://avenueone.com/_assets/Avenue_One_Horizontal_Logo_Digital_FullColor_1-b0ddb1c50f.svg
 x-type: company
 x-source: harvest:secondary-market
