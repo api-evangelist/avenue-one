@@ -47,7 +47,7 @@ created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
-- Real-Estate
+- Real Estate
 - Single-Family Rental
 - PropTech
 - Institutional Investing
@@ -65,6 +65,7 @@ tags_raw:
 - Asset Management
 - Property Data
 - Marketplace
+- Real-Estate
 apis: []
 maintainers:
 - FN: Kin Lane
